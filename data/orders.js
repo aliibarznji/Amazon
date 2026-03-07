@@ -1,10 +1,9 @@
-export const orders = JSON.parse(localStorage.getItem('orders')) || [];
-
+export const orders = JSON.parse(localStorage.getItem('orders') || '[]');
 export function addOrder(order) {
-  orders.unshift(order);
-  saveToStorage();
+    orders.unshift(order);
+    saveToStorage();
 }
-
 function saveToStorage() {
-  localStorage.setItem('orders', JSON.stringify(orders));
+    localStorage.setItem('orders', JSON.stringify(orders));
 }
+//# sourceMappingURL=orders.js.map

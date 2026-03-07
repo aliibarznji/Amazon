@@ -1,0 +1,33 @@
+{
+  "name": "amazon",
+  "version": "1.0.0",
+  "description": "Amazon E-commerce Clone",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "build": "tsc",
+    "build:watch": "tsc --watch",
+    "serve": "http-server -p 8080 -o amazon.html",
+    "dev": "tsc && http-server -p 8080 -o amazon.html",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aliibarznji/Amazon.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/aliibarznji/Amazon/issues"
+  },
+  "homepage": "https://github.com/aliibarznji/Amazon#readme",
+  "devDependencies": {
+    "@types/jasmine": "^6.0.0",
+    "http-server": "^14.1.1",
+    "typescript": "^5.9.3"
+  }
+}

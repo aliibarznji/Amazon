@@ -1,0 +1,25 @@
+# TypeScript compiled output
+*.js
+*.js.map
+*.d.ts
+
+# Exclude source TypeScript files from ignore
+!tests/lib/**/*.js
+
+# Node modules
+node_modules/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+npm-debug.log*

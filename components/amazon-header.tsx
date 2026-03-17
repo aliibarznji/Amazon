@@ -31,22 +31,24 @@ export function AmazonHeader({
     <header className={styles.header}>
       <div className={styles.leftSection}>
         <Link href="/" className={styles.headerLink}>
-          <Image
-            className={styles.logo}
-            src="/images/amazon-logo-white.png"
-            alt="Amazon"
-            width={100}
-            height={31}
-            priority
-          />
-          <Image
-            className={styles.mobileLogo}
-            src="/images/amazon-mobile-logo-white.png"
-            alt="Amazon"
-            width={36}
-            height={35}
-            priority
-          />
+          <span className={styles.brandPill}>
+            <Image
+              className={styles.logo}
+              src="/images/amazon-logo.png"
+              alt="Amazon"
+              width={100}
+              height={31}
+              priority
+            />
+            <Image
+              className={styles.mobileLogo}
+              src="/images/amazon-mobile-logo.png"
+              alt="Amazon"
+              width={36}
+              height={35}
+              priority
+            />
+          </span>
         </Link>
       </div>
 

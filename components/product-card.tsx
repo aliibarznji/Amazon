@@ -1,6 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 import { useStore } from '@/components/store-provider';
 import { getStarsImage } from '@/lib/products';
@@ -31,10 +32,13 @@ export function ProductCard({ product }: { product: Product }) {
   return (
     <div className={styles.productContainer}>
       <div className={styles.productImageContainer}>
-        <img
+        <Image
           className={styles.productImage}
           src={`/${product.image}`}
           alt={product.name}
+          width={220}
+          height={220}
+          sizes="(max-width: 450px) 100vw, (max-width: 800px) 50vw, 20vw"
         />
       </div>
 
@@ -43,10 +47,12 @@ export function ProductCard({ product }: { product: Product }) {
       </div>
 
       <div className={styles.productRatingContainer}>
-        <img
+        <Image
           className={styles.productRatingStars}
           src={getStarsImage(product.rating.stars)}
           alt={`${product.rating.stars} star rating`}
+          width={100}
+          height={20}
         />
         <div className={styles.productRatingCount}>{product.rating.count}</div>
       </div>
@@ -84,7 +90,7 @@ export function ProductCard({ product }: { product: Product }) {
           showAddedMessage ? styles.addedToCartVisible : ''
         }`}
       >
-        <img src="/images/icons/checkmark.png" alt="" />
+        <Image src="/images/icons/checkmark.png" alt="" width={20} height={20} />
         Added
       </div>
 

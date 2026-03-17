@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useDeferredValue, useState } from 'react';
 
 import { AmazonHeader } from '@/components/amazon-header';
 import { ProductCard } from '@/components/product-card';
@@ -10,8 +10,9 @@ import styles from './home.module.css';
 
 export default function HomePage() {
   const [searchValue, setSearchValue] = useState('');
+  const deferredSearchValue = useDeferredValue(searchValue);
 
-  const normalizedQuery = searchValue.trim().toLowerCase();
+  const normalizedQuery = deferredSearchValue.trim().toLowerCase();
   const filteredProducts = products.filter((product) => {
     if (!normalizedQuery) {
       return true;

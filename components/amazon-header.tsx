@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { useStore } from '@/components/store-provider';
@@ -30,15 +31,21 @@ export function AmazonHeader({
     <header className={styles.header}>
       <div className={styles.leftSection}>
         <Link href="/" className={styles.headerLink}>
-          <img
+          <Image
             className={styles.logo}
             src="/images/amazon-logo-white.png"
             alt="Amazon"
+            width={100}
+            height={31}
+            priority
           />
-          <img
+          <Image
             className={styles.mobileLogo}
             src="/images/amazon-mobile-logo-white.png"
             alt="Amazon"
+            width={36}
+            height={35}
+            priority
           />
         </Link>
       </div>
@@ -52,10 +59,12 @@ export function AmazonHeader({
         />
 
         <button type="button" className={styles.searchButton} aria-label="Search">
-          <img
+          <Image
             className={styles.searchIcon}
             src="/images/icons/search-icon.png"
             alt=""
+            width={22}
+            height={22}
           />
         </button>
       </div>
@@ -70,10 +79,12 @@ export function AmazonHeader({
         </Link>
 
         <Link className={`${styles.headerLink} ${styles.cartLink}`} href="/checkout">
-          <img
+          <Image
             className={styles.cartIcon}
             src="/images/icons/cart-icon.png"
             alt=""
+            width={50}
+            height={50}
           />
           <div className={styles.cartQuantity}>{cartQuantity}</div>
           <div className={styles.cartText}>Cart</div>

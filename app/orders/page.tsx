@@ -1,6 +1,7 @@
 'use client';
 
 import { Fragment } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 
 import { AmazonHeader } from '@/components/amazon-header';
@@ -64,10 +65,13 @@ export default function OrdersPage() {
                     return (
                       <Fragment key={`${order.id}-${product.id}`}>
                         <div className={styles.productImageContainer}>
-                          <img
+                          <Image
                             className={styles.productImage}
                             src={`/${product.image}`}
                             alt={product.name}
+                            width={110}
+                            height={110}
+                            sizes="110px"
                           />
                         </div>
 
@@ -85,10 +89,12 @@ export default function OrdersPage() {
                             className={`${styles.buyAgainButton} button-primary`}
                             onClick={() => addToCart(product.id, 1)}
                           >
-                            <img
+                            <Image
                               className={styles.buyAgainIcon}
                               src="/images/icons/buy-again.png"
                               alt=""
+                              width={25}
+                              height={25}
                             />
                             <span>Buy it again</span>
                           </button>

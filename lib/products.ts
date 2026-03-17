@@ -1,4 +1,4 @@
-import productsData from '@/backend/products.json';
+import productsData from '@/lib/data/products.json';
 
 import type { Product } from '@/lib/types';
 

@@ -1,6 +1,7 @@
 'use client';
 
 import { Suspense } from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 
@@ -84,10 +85,13 @@ function TrackingPageContent() {
             <div className={styles.productInfo}>{product.name}</div>
             <div className={styles.productInfo}>Quantity: {orderedProduct.quantity}</div>
 
-            <img
+            <Image
               className={styles.productImage}
               src={`/${product.image}`}
               alt={product.name}
+              width={150}
+              height={150}
+              sizes="150px"
             />
 
             <div className={styles.progressLabelsContainer}>

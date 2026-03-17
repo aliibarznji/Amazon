@@ -11,8 +11,8 @@ const roboto = Roboto({
 });
 
 export const metadata: Metadata = {
-  title: 'Amazon Clone',
-  description: 'A Next.js Amazon storefront demo'
+  title: 'Amazon Store',
+  description: 'A modern Amazon-style storefront built with Next.js and TypeScript'
 };
 
 export default function RootLayout({

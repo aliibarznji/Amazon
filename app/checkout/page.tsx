@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { CheckoutHeader } from '@/components/checkout-header';
@@ -86,10 +87,13 @@ export default function CheckoutPage() {
                   </div>
 
                   <div className={styles.cartItemDetailsGrid}>
-                    <img
+                    <Image
                       className={styles.productImage}
                       src={`/${product.image}`}
                       alt={product.name}
+                      width={120}
+                      height={120}
+                      sizes="120px"
                     />
 
                     <div>

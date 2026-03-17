@@ -73,10 +73,12 @@ function TrackingPageContent() {
             <p>Open the tracking page from your orders list to view shipment details.</p>
           </div>
         ) : (
-          <div>
+          <div className={styles.trackingCard}>
             <Link className={`${styles.backToOrdersLink} link-primary`} href="/orders">
               View all orders
             </Link>
+
+            <div className={styles.statusPill}>{currentStatus}</div>
 
             <div className={styles.deliveryDate}>
               Arriving on {formatLongDate(orderedProduct.estimatedDeliveryTime)}

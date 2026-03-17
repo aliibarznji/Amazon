@@ -62,7 +62,20 @@ export default function CheckoutPage() {
       <CheckoutHeader />
 
       <main className={styles.main}>
-        <div className={styles.pageTitle}>Review your order</div>
+        <div className={styles.pageHeader}>
+          <span className={styles.pageEyebrow}>Checkout</span>
+          <div className={styles.pageHeaderRow}>
+            <div>
+              <h1 className={styles.pageTitle}>Review your order</h1>
+              <p className={styles.pageSubtitle}>
+                Confirm delivery timing, adjust shipping options, and place the
+                order when everything looks right.
+              </p>
+            </div>
+
+            <div className={styles.summaryPill}>{totalItems} items in cart</div>
+          </div>
+        </div>
 
         {!hydrated ? (
           <div className="empty-state">

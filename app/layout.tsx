@@ -1,13 +1,18 @@
 import type { Metadata } from 'next';
-import { Roboto } from 'next/font/google';
+import { Manrope, Space_Grotesk } from 'next/font/google';
 
 import { StoreProvider } from '@/components/store-provider';
 
 import './globals.css';
 
-const roboto = Roboto({
+const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['400', '500', '700']
+  variable: '--font-sans'
+});
+
+const spaceGrotesk = Space_Grotesk({
+  subsets: ['latin'],
+  variable: '--font-display'
 });
 
 export const metadata: Metadata = {
@@ -22,7 +27,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={`${manrope.variable} ${spaceGrotesk.variable}`}>
         <StoreProvider>{children}</StoreProvider>
       </body>
     </html>

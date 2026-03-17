@@ -14,6 +14,12 @@ export function ProductCard({ product }: { product: Product }) {
   const { addToCart } = useStore();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [showAddedMessage, setShowAddedMessage] = useState(false);
+  const badge =
+    product.rating.count > 2000
+      ? 'Best seller'
+      : product.type === 'clothing'
+        ? 'Style pick'
+        : 'Curated find';
 
   useEffect(() => {
     if (!showAddedMessage) {
@@ -31,6 +37,11 @@ export function ProductCard({ product }: { product: Product }) {
 
   return (
     <div className={styles.productContainer}>
+      <div className={styles.topRow}>
+        <span className={styles.badge}>{badge}</span>
+        <span className={styles.ratingChip}>{product.rating.stars.toFixed(1)} / 5</span>
+      </div>
+
       <div className={styles.productImageContainer}>
         <Image
           className={styles.productImage}
@@ -57,9 +68,13 @@ export function ProductCard({ product }: { product: Product }) {
         <div className={styles.productRatingCount}>{product.rating.count}</div>
       </div>
 
-      <div className={styles.productPrice}>${formatCurrency(product.priceCents)}</div>
+      <div className={styles.priceRow}>
+        <div className={styles.productPrice}>${formatCurrency(product.priceCents)}</div>
+        <span className={styles.shippingNote}>Fast ship</span>
+      </div>
 
       <div className={styles.productQuantityContainer}>
+        <span className={styles.quantityLabel}>Quantity</span>
         <select
           value={selectedQuantity}
           onChange={(event) => setSelectedQuantity(Number(event.target.value))}

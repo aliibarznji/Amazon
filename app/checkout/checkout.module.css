@@ -1,29 +1,70 @@
 .main {
-  max-width: 1100px;
-  padding-left: 30px;
-  padding-right: 30px;
-  margin-top: 140px;
+  max-width: 1180px;
+  padding-left: 24px;
+  padding-right: 24px;
+  margin-top: 126px;
   margin-bottom: 100px;
   margin-left: auto;
   margin-right: auto;
 }
 
+.pageHeader {
+  margin-bottom: 24px;
+}
+
+.pageEyebrow {
+  display: inline-flex;
+  margin-bottom: 12px;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: var(--accent-soft);
+  color: var(--accent-strong);
+  font-size: 0.8rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.pageHeaderRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 16px;
+}
+
 .pageTitle {
+  margin: 0;
+  font-family: var(--font-display), sans-serif;
   font-weight: 700;
-  font-size: 22px;
-  margin-bottom: 18px;
+  font-size: clamp(2rem, 4vw, 3rem);
+}
+
+.pageSubtitle {
+  margin-top: 8px;
+  color: var(--muted);
+  line-height: 1.65;
+}
+
+.summaryPill {
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid var(--line);
+  background: rgba(255, 251, 246, 0.82);
+  box-shadow: var(--shadow-md);
+  color: var(--muted);
+  white-space: nowrap;
 }
 
 .checkoutGrid {
   display: grid;
   grid-template-columns: 1fr 350px;
-  column-gap: 12px;
+  column-gap: 18px;
   align-items: start;
 }
 
 @media (max-width: 1000px) {
   .main {
-    max-width: 500px;
+    max-width: 760px;
   }
 
   .checkoutGrid {
@@ -33,9 +74,12 @@
 
 .cartItemContainer,
 .paymentSummary {
-  border: 1px solid rgb(222, 222, 222);
-  border-radius: 4px;
-  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  padding: 22px;
+  background: rgba(255, 251, 245, 0.8);
+  box-shadow: var(--shadow-md);
+  backdrop-filter: blur(14px);
 }
 
 .cartItemContainer {
@@ -43,7 +87,9 @@
 }
 
 .paymentSummary {
-  padding-bottom: 5px;
+  position: sticky;
+  top: 112px;
+  padding-bottom: 10px;
 }
 
 @media (max-width: 1000px) {
@@ -54,11 +100,11 @@
 }
 
 .deliveryDate {
-  color: rgb(0, 118, 0);
+  color: var(--success);
   font-weight: 700;
-  font-size: 19px;
+  font-size: 1.08rem;
   margin-top: 5px;
-  margin-bottom: 22px;
+  margin-bottom: 18px;
 }
 
 .cartItemDetailsGrid {
@@ -79,17 +125,23 @@
   max-height: 120px;
   margin-left: auto;
   margin-right: auto;
+  border-radius: 20px;
+  background: linear-gradient(180deg, rgba(255, 245, 233, 0.8), rgba(249, 240, 228, 0.75));
+  padding: 10px;
 }
 
 .productName {
   font-weight: 700;
   margin-bottom: 8px;
+  font-size: 1.05rem;
 }
 
 .productPrice {
-  color: rgb(177, 39, 4);
+  color: var(--accent-strong);
   font-weight: 700;
-  margin-bottom: 5px;
+  margin-bottom: 10px;
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.35rem;
 }
 
 .productQuantityAction {
@@ -114,6 +166,7 @@
 .deliveryOptionsTitle {
   font-weight: 700;
   margin-bottom: 10px;
+  font-family: var(--font-display), sans-serif;
 }
 
 .deliveryOption {
@@ -121,6 +174,15 @@
   grid-template-columns: 24px 1fr;
   margin-bottom: 12px;
   cursor: pointer;
+  padding: 12px 14px;
+  border-radius: 18px;
+  border: 1px solid transparent;
+  background: rgba(255, 255, 255, 0.56);
+}
+
+.deliveryOption:hover {
+  border-color: rgba(201, 109, 45, 0.2);
+  background: rgba(255, 248, 240, 0.9);
 }
 
 .deliveryOptionInput {
@@ -129,20 +191,21 @@
 }
 
 .deliveryOptionDate {
-  color: rgb(0, 118, 0);
+  color: var(--success);
   font-weight: 500;
   margin-bottom: 3px;
 }
 
 .deliveryOptionPrice {
-  color: rgb(120, 120, 120);
+  color: var(--muted);
   font-size: 15px;
 }
 
 .paymentSummaryTitle {
   font-weight: 700;
-  font-size: 18px;
-  margin-bottom: 12px;
+  font-size: 1.4rem;
+  margin-bottom: 18px;
+  font-family: var(--font-display), sans-serif;
 }
 
 .paymentSummaryRow {
@@ -157,7 +220,7 @@
 }
 
 .subtotalRow .paymentSummaryMoney {
-  border-top: 1px solid rgb(222, 222, 222);
+  border-top: 1px solid var(--line);
 }
 
 .subtotalRow div {
@@ -165,22 +228,37 @@
 }
 
 .totalRow {
-  color: rgb(177, 39, 4);
+  color: var(--accent-strong);
   font-weight: 700;
-  font-size: 18px;
-  border-top: 1px solid rgb(222, 222, 222);
+  font-size: 1.2rem;
+  border-top: 1px solid var(--line);
   padding-top: 18px;
+  font-family: var(--font-display), sans-serif;
 }
 
 .placeOrderButton {
   width: 100%;
-  padding-top: 12px;
-  padding-bottom: 12px;
-  border-radius: 8px;
+  padding-top: 14px;
+  padding-bottom: 14px;
+  border-radius: 999px;
   margin-top: 11px;
   margin-bottom: 15px;
+  font-weight: 800;
 }
 
 .emptyCart {
   padding: 32px 0;
+}
+
+@media (max-width: 760px) {
+  .main {
+    margin-top: 156px;
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .pageHeaderRow {
+    flex-direction: column;
+    align-items: start;
+  }
 }

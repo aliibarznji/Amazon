@@ -19,7 +19,18 @@ export default function OrdersPage() {
       <AmazonHeader />
 
       <main className={styles.main}>
-        <div className={styles.pageTitle}>Your Orders</div>
+        <div className={styles.pageHeader}>
+          <div className={styles.pageHeaderText}>
+            <span className={styles.pageEyebrow}>Order history</span>
+            <h1 className={styles.pageTitle}>Your Orders</h1>
+            <p className={styles.pageSubtitle}>
+              Revisit recent purchases, buy favorites again, and jump into
+              shipment tracking from one place.
+            </p>
+          </div>
+
+          <div className={styles.summaryPill}>{orders.length} orders saved</div>
+        </div>
 
         {!hydrated ? (
           <div className="empty-state">

@@ -29,15 +29,14 @@
 }
 
 .galleryPanel {
+  position: relative;
   padding: 28px;
   min-height: 540px;
+  overflow: visible;
 }
 
 .galleryLayout {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 220px;
-  gap: 22px;
-  align-items: start;
+  position: relative;
   width: 100%;
 }
 
@@ -91,9 +90,14 @@
 }
 
 .zoomPanel {
+  position: absolute;
+  top: 0;
+  left: calc(100% + 22px);
+  width: 220px;
   display: flex;
   flex-direction: column;
   gap: 12px;
+  z-index: 5;
 }
 
 .zoomPreview {
@@ -108,13 +112,6 @@
 
 .zoomPreviewActive {
   border-color: rgba(55, 95, 164, 0.3);
-}
-
-.zoomHint {
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.6;
 }
 
 .infoPanel {
@@ -247,10 +244,6 @@
   }
 
   .layout {
-    grid-template-columns: 1fr;
-  }
-
-  .galleryLayout {
     grid-template-columns: 1fr;
   }
 

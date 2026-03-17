@@ -127,23 +127,17 @@ export function ProductDetails({ product }: { product: Product }) {
                 />
               </div>
 
-              <div className={styles.zoomPanel}>
-                <div
-                  className={`${styles.zoomPreview} ${
-                    zoomState.active ? styles.zoomPreviewActive : ''
-                  }`}
-                  style={{
-                    backgroundImage: `url(/${product.image})`,
-                    backgroundPosition: `${zoomState.xPercent}% ${zoomState.yPercent}%`
-                  }}
-                />
-
-                <p className={styles.zoomHint}>
-                  {zoomState.active
-                    ? 'Hovering preview'
-                    : 'Hover over the product image to zoom'}
-                </p>
-              </div>
+              {zoomState.active ? (
+                <div className={styles.zoomPanel}>
+                  <div
+                    className={`${styles.zoomPreview} ${styles.zoomPreviewActive}`}
+                    style={{
+                      backgroundImage: `url(/${product.image})`,
+                      backgroundPosition: `${zoomState.xPercent}% ${zoomState.yPercent}%`
+                    }}
+                  />
+                </div>
+              ) : null}
             </div>
           </section>
 

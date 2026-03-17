@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { useStore } from '@/components/store-provider';
 import { getStarsImage } from '@/lib/products';
@@ -42,36 +43,38 @@ export function ProductCard({ product }: { product: Product }) {
         <span className={styles.ratingChip}>{product.rating.stars.toFixed(1)} / 5</span>
       </div>
 
-      <div className={styles.productImageContainer}>
-        <Image
-          className={styles.productImage}
-          src={`/${product.image}`}
-          alt={product.name}
-          width={220}
-          height={220}
-          sizes="(max-width: 450px) 100vw, (max-width: 800px) 50vw, 20vw"
-        />
-      </div>
+      <Link className={styles.contentLink} href={`/products/${product.id}`}>
+        <div className={styles.productImageContainer}>
+          <Image
+            className={styles.productImage}
+            src={`/${product.image}`}
+            alt={product.name}
+            width={220}
+            height={220}
+            sizes="(max-width: 450px) 100vw, (max-width: 800px) 50vw, 20vw"
+          />
+        </div>
 
-      <div className={`${styles.productName} ${styles.limitTextTo2Lines}`}>
-        {product.name}
-      </div>
+        <div className={`${styles.productName} ${styles.limitTextTo2Lines}`}>
+          {product.name}
+        </div>
 
-      <div className={styles.productRatingContainer}>
-        <Image
-          className={styles.productRatingStars}
-          src={getStarsImage(product.rating.stars)}
-          alt={`${product.rating.stars} star rating`}
-          width={100}
-          height={20}
-        />
-        <div className={styles.productRatingCount}>{product.rating.count}</div>
-      </div>
+        <div className={styles.productRatingContainer}>
+          <Image
+            className={styles.productRatingStars}
+            src={getStarsImage(product.rating.stars)}
+            alt={`${product.rating.stars} star rating`}
+            width={100}
+            height={20}
+          />
+          <div className={styles.productRatingCount}>{product.rating.count}</div>
+        </div>
 
-      <div className={styles.priceRow}>
-        <div className={styles.productPrice}>${formatCurrency(product.priceCents)}</div>
-        <span className={styles.shippingNote}>Fast ship</span>
-      </div>
+        <div className={styles.priceRow}>
+          <div className={styles.productPrice}>${formatCurrency(product.priceCents)}</div>
+          <span className={styles.shippingNote}>Fast ship</span>
+        </div>
+      </Link>
 
       <div className={styles.productQuantityContainer}>
         <span className={styles.quantityLabel}>Quantity</span>
@@ -97,6 +100,10 @@ export function ProductCard({ product }: { product: Product }) {
           Size chart
         </a>
       ) : null}
+
+      <Link className={styles.viewDetailsLink} href={`/products/${product.id}`}>
+        View product details
+      </Link>
 
       <div className={styles.productSpacer} />
 

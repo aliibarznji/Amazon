@@ -9,6 +9,7 @@ export interface Product {
   name: string;
   rating: ProductRating;
   priceCents: number;
+  description?: string;
   keywords?: string[];
   type?: string;
   sizeChartLink?: string;

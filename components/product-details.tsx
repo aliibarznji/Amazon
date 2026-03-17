@@ -1,8 +1,9 @@
 'use client';
 
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import type { MouseEvent as ReactMouseEvent } from 'react';
 
 import { AmazonHeader } from '@/components/amazon-header';
 import { useStore } from '@/components/store-provider';
@@ -31,8 +32,17 @@ export function ProductDetails({ product }: { product: Product }) {
   const { addToCart } = useStore();
   const [selectedQuantity, setSelectedQuantity] = useState(1);
   const [showAddedMessage, setShowAddedMessage] = useState(false);
+  const [zoomState, setZoomState] = useState({
+    active: false,
+    xPercent: 50,
+    yPercent: 50,
+    lensLeft: 0,
+    lensTop: 0
+  });
+  const imageStageRef = useRef<HTMLDivElement | null>(null);
 
   const description = useMemo(() => getProductDescription(product), [product]);
+  const lensSize = 150;
 
   useEffect(() => {
     if (!showAddedMessage) {
@@ -48,6 +58,28 @@ export function ProductDetails({ product }: { product: Product }) {
     };
   }, [showAddedMessage]);
 
+  const handleZoomMove = (event: ReactMouseEvent<HTMLDivElement>) => {
+    const stage = imageStageRef.current;
+
+    if (!stage) {
+      return;
+    }
+
+    const bounds = stage.getBoundingClientRect();
+    const rawX = event.clientX - bounds.left;
+    const rawY = event.clientY - bounds.top;
+    const x = Math.max(0, Math.min(rawX, bounds.width));
+    const y = Math.max(0, Math.min(rawY, bounds.height));
+
+    setZoomState({
+      active: true,
+      xPercent: (x / bounds.width) * 100,
+      yPercent: (y / bounds.height) * 100,
+      lensLeft: Math.max(0, Math.min(x - lensSize / 2, bounds.width - lensSize)),
+      lensTop: Math.max(0, Math.min(y - lensSize / 2, bounds.height - lensSize))
+    });
+  };
+
   return (
     <>
       <AmazonHeader />
@@ -59,15 +91,60 @@ export function ProductDetails({ product }: { product: Product }) {
 
         <div className={styles.layout}>
           <section className={styles.galleryPanel}>
-            <Image
-              className={styles.productImage}
-              src={`/${product.image}`}
-              alt={product.name}
-              width={520}
-              height={520}
-              sizes="(max-width: 960px) 100vw, 50vw"
-              priority
-            />
+            <div className={styles.galleryLayout}>
+              <div
+                ref={imageStageRef}
+                className={styles.imageStage}
+                onMouseEnter={handleZoomMove}
+                onMouseMove={handleZoomMove}
+                onMouseLeave={() =>
+                  setZoomState((currentState) => ({
+                    ...currentState,
+                    active: false
+                  }))
+                }
+              >
+                <Image
+                  className={styles.productImage}
+                  src={`/${product.image}`}
+                  alt={product.name}
+                  width={520}
+                  height={520}
+                  sizes="(max-width: 960px) 100vw, 50vw"
+                  priority
+                />
+
+                <div
+                  className={`${styles.zoomLens} ${
+                    zoomState.active ? styles.zoomLensVisible : ''
+                  }`}
+                  style={{
+                    width: `${lensSize}px`,
+                    height: `${lensSize}px`,
+                    left: `${zoomState.lensLeft}px`,
+                    top: `${zoomState.lensTop}px`
+                  }}
+                />
+              </div>
+
+              <div className={styles.zoomPanel}>
+                <div
+                  className={`${styles.zoomPreview} ${
+                    zoomState.active ? styles.zoomPreviewActive : ''
+                  }`}
+                  style={{
+                    backgroundImage: `url(/${product.image})`,
+                    backgroundPosition: `${zoomState.xPercent}% ${zoomState.yPercent}%`
+                  }}
+                />
+
+                <p className={styles.zoomHint}>
+                  {zoomState.active
+                    ? 'Hovering preview'
+                    : 'Hover over the product image to zoom'}
+                </p>
+              </div>
+            </div>
           </section>
 
           <section className={styles.infoPanel}>

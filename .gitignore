@@ -8,6 +8,8 @@
 
 # Node modules
 node_modules/
+.next/
+out/
 
 # IDE
 .vscode/
